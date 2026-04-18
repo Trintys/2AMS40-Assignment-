@@ -1,0 +1,243 @@
+ASSIGNMENT 1 - OPTIMAL MAINTENANCE IN A NETWORK
+
+MDP Parameters:
+  Machine 1 failure threshold (xi_1): 5
+  Machine 2 failure threshold (xi_2): 7
+  Poisson degradation parameter (lambda): 0.5
+  Discount factor (gamma): 0.9
+  Preventive maintenance cost: 1
+  Corrective maintenance cost: 5
+  Unavailability cost per time unit: 1
+  Travel time: 1 time unit(s)
+  Preventive maintenance time: 1 time unit(s)
+  Corrective maintenance time: 2 time unit(s)
+
+Total states: 432
+
+
+
+TASK 3: EVALUATE 'CORRECTIVE-ONLY' (FAILURE-ONLY) POLICY
+
+Total states: 432
+Policy evaluation converged in 134 iterations
+Convergence threshold: delta = 1e-06
+
+Initial state: (0, 0, 0, 0, 0)
+Expected total discounted cost (corrective-only): 6.326107
+
+Result type: EXACT (analytical solution via Bellman equations)
+Computation time: 0.5634 seconds
+
+Value function for selected states:
+  V(0, 0, 0, 0, 0) = 6.326107
+  V(0, 0, 1, 0, 0) = 6.216532
+  V(0, 0, 2, 0, 0) = 6.413252
+  V(3, 3, 0, 0, 0) = 11.264702
+  V(5, 0, 0, 0, 0) = 12.959257
+  V(0, 7, 0, 0, 0) = 13.500576
+  V(5, 7, 0, 0, 0) = 20.665889
+
+
+
+TASK 3 VERIFICATION: MONTE CARLO SIMULATION
+
+Number of simulations: 10000
+Steps per simulation: 500
+Discount factor gamma = 0.9
+
+Monte Carlo estimate: 6.302513
+Standard error: 0.020606
+95% Confidence interval: [6.262126, 6.342900]
+Computation time: 1317.4677 seconds
+
+Justification for Monte Carlo parameters:
+  - n_simulations = 10000: gives SE ~ 0.0206
+  - n_steps = 500: sufficient since gamma^500 ≈ 1.32e-23
+
+
+
+TASK 4: VALUE ITERATION - OPTIMAL POLICY
+
+Total states: 432
+Discount factor gamma = 0.9
+Convergence threshold delta = 1e-06
+
+Converged in 126 iterations
+Computation time: 0.6605 seconds
+
+Convergence history (last 5 iterations):
+  Iteration 122: max_diff = 1.47e-06
+  Iteration 123: max_diff = 1.33e-06
+  Iteration 124: max_diff = 1.19e-06
+  Iteration 125: max_diff = 1.07e-06
+  Iteration 126: max_diff = 9.67e-07
+
+Initial state: (0, 0, 0, 0, 0)
+Optimal expected total discounted cost: 3.219846
+
+OPTIMAL POLICY (engineer at depot, idle):
+State (s1, s2) | Action       | Value
+(0, 0)          | Do nothing   | 3.2198
+(0, 1)          | Do nothing   | 3.5048
+(0, 2)          | Do nothing   | 3.8258
+(0, 3)          | Do nothing   | 4.1766
+(0, 4)          | Do nothing   | 4.5633
+(0, 5)          | Repair M2    | 4.8737
+(0, 6)          | Repair M2    | 5.1038
+(0, 7)          | Repair M2    | 10.5641
+(1, 0)          | Do nothing   | 3.6134
+(1, 1)          | Do nothing   | 3.9222
+(1, 2)          | Do nothing   | 4.2809
+(1, 3)          | Do nothing   | 4.6831
+(1, 4)          | Do nothing   | 5.1175
+(1, 5)          | Repair M2    | 5.3486
+(1, 6)          | Repair M2    | 5.6036
+(1, 7)          | Repair M2    | 11.1134
+(2, 0)          | Do nothing   | 4.0760
+(2, 1)          | Do nothing   | 4.3999
+(2, 2)          | Do nothing   | 4.7916
+(2, 3)          | Do nothing   | 5.2681
+(2, 4)          | Do nothing   | 5.8406
+(2, 5)          | Repair M2    | 6.0356
+(2, 6)          | Repair M2    | 6.3545
+(2, 7)          | Repair M2    | 11.9924
+(3, 0)          | Repair M1    | 4.5451
+(3, 1)          | Repair M1    | 4.8716
+(3, 2)          | Repair M1    | 5.2557
+(3, 3)          | Repair M1    | 5.7224
+(3, 4)          | Repair M1    | 6.3933
+(3, 5)          | Repair M2    | 7.2709
+(3, 6)          | Repair M2    | 7.6682
+(3, 7)          | Repair M2    | 13.4629
+(4, 0)          | Repair M1    | 4.7591
+(4, 1)          | Repair M1    | 5.0848
+(4, 2)          | Repair M1    | 5.4728
+(4, 3)          | Repair M1    | 5.9639
+(4, 4)          | Repair M1    | 6.7008
+(4, 5)          | Repair M1    | 8.0089
+(4, 6)          | Repair M2    | 9.7821
+(4, 7)          | Repair M2    | 15.5266
+(5, 0)          | Repair M1    | 10.1873
+(5, 1)          | Repair M1    | 10.5110
+(5, 2)          | Repair M1    | 10.9071
+(5, 3)          | Repair M1    | 11.4469
+(5, 4)          | Repair M1    | 12.3157
+(5, 5)          | Repair M1    | 13.7872
+(5, 6)          | Repair M1    | 15.8652
+(5, 7)          | Repair M2    | 18.3107
+
+OPTIMAL POLICY (engineer idle at M1):
+State (s1, s2) | Action       | Value
+(0, 0)          | Do nothing   | 2.8169
+(0, 1)          | Do nothing   | 3.1533
+(0, 2)          | Do nothing   | 3.5570
+(0, 3)          | Do nothing   | 4.0316
+(0, 4)          | Do nothing   | 4.5836
+(0, 5)          | Repair M2    | 4.9388
+(0, 6)          | Repair M2    | 5.4811
+(0, 7)          | Repair M2    | 11.2963
+(1, 0)          | Do nothing   | 3.0740
+(1, 1)          | Do nothing   | 3.4140
+(1, 2)          | Do nothing   | 3.8319
+(1, 3)          | Do nothing   | 4.3485
+(1, 4)          | Do nothing   | 4.9969
+(1, 5)          | Repair M2    | 5.5193
+(1, 6)          | Repair M2    | 6.1051
+(1, 7)          | Repair M2    | 11.9638
+(2, 0)          | Do nothing   | 3.3937
+(2, 1)          | Do nothing   | 3.7270
+(2, 2)          | Do nothing   | 4.1339
+(2, 3)          | Do nothing   | 4.6486
+(2, 4)          | Do nothing   | 5.3614
+(2, 5)          | Repair M1    | 6.1090
+(2, 6)          | Repair M2    | 7.0945
+(2, 7)          | Repair M2    | 13.0175
+(3, 0)          | Repair M1    | 3.6942
+(3, 1)          | Repair M1    | 4.0273
+(3, 2)          | Repair M1    | 4.4205
+(3, 3)          | Repair M1    | 4.8689
+(3, 4)          | Repair M1    | 5.3703
+(3, 5)          | Repair M1    | 6.1090
+(3, 6)          | Repair M1    | 7.9923
+(3, 7)          | Repair M2    | 14.5734
+(4, 0)          | Repair M1    | 3.6942
+(4, 1)          | Repair M1    | 4.0273
+(4, 2)          | Repair M1    | 4.4205
+(4, 3)          | Repair M1    | 4.8689
+(4, 4)          | Repair M1    | 5.3703
+(4, 5)          | Repair M1    | 6.1090
+(4, 6)          | Repair M1    | 7.9923
+(4, 7)          | Repair M2    | 16.4598
+(5, 0)          | Repair M1    | 9.4814
+(5, 1)          | Repair M1    | 9.8082
+(5, 2)          | Repair M1    | 10.1912
+(5, 3)          | Repair M1    | 10.6505
+(5, 4)          | Repair M1    | 11.3018
+(5, 5)          | Repair M1    | 12.5039
+(5, 6)          | Repair M1    | 14.6713
+(5, 7)          | Repair M1    | 17.9500
+
+OPTIMAL POLICY (engineer idle at M2):
+State (s1, s2) | Action       | Value
+(0, 0)          | Do nothing   | 3.0771
+(0, 1)          | Do nothing   | 3.2520
+(0, 2)          | Do nothing   | 3.4199
+(0, 3)          | Do nothing   | 3.5853
+(0, 4)          | Do nothing   | 3.7953
+(0, 5)          | Repair M2    | 3.9887
+(0, 6)          | Repair M2    | 3.9887
+(0, 7)          | Repair M2    | 9.8052
+(1, 0)          | Do nothing   | 3.5505
+(1, 1)          | Do nothing   | 3.7694
+(1, 2)          | Do nothing   | 3.9750
+(1, 3)          | Do nothing   | 4.1441
+(1, 4)          | Do nothing   | 4.3084
+(1, 5)          | Repair M2    | 4.4399
+(1, 6)          | Repair M2    | 4.4399
+(1, 7)          | Repair M2    | 10.2728
+(2, 0)          | Do nothing   | 4.0954
+(2, 1)          | Do nothing   | 4.3740
+(2, 2)          | Do nothing   | 4.6590
+(2, 3)          | Do nothing   | 4.8895
+(2, 4)          | Repair M2    | 4.9582
+(2, 5)          | Repair M2    | 4.9582
+(2, 6)          | Repair M2    | 4.9582
+(2, 7)          | Repair M2    | 10.9407
+(3, 0)          | Repair M1    | 4.5367
+(3, 1)          | Repair M1    | 4.8631
+(3, 2)          | Repair M1    | 5.2716
+(3, 3)          | Repair M2    | 5.7319
+(3, 4)          | Repair M2    | 5.7319
+(3, 5)          | Repair M2    | 5.7319
+(3, 6)          | Repair M2    | 5.7319
+(3, 7)          | Repair M2    | 12.1527
+(4, 0)          | Repair M1    | 5.0439
+(4, 1)          | Repair M1    | 5.3741
+(4, 2)          | Repair M1    | 5.7997
+(4, 3)          | Repair M1    | 6.4154
+(4, 4)          | Repair M1    | 7.3984
+(4, 5)          | Repair M2    | 7.5863
+(4, 6)          | Repair M2    | 7.5863
+(4, 7)          | Repair M2    | 14.2992
+(5, 0)          | Repair M1    | 10.8240
+(5, 1)          | Repair M1    | 11.1579
+(5, 2)          | Repair M1    | 11.6008
+(5, 3)          | Repair M1    | 12.2607
+(5, 4)          | Repair M1    | 13.3101
+(5, 5)          | Repair M1    | 14.8708
+(5, 6)          | Repair M1    | 16.7666
+(5, 7)          | Repair M2    | 17.5674
+
+COMPARISON: CORRECTIVE-ONLY vs OPTIMAL POLICY
+Corrective-only policy: 6.326107
+Optimal policy:         3.219846
+Improvement:            3.106261 (49.10%)
+
+SUMMARY
+Task 3: Expected cost under corrective-only = 6.326107
+        (converged in 134 iterations)
+
+Task 4: Expected cost under optimal policy = 3.219846
+        (converged in 126 iterations)
+
+Optimal policy achieves 49.10% cost reduction
