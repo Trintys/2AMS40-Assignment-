@@ -34,6 +34,9 @@ The optimal policy significantly reduces cost by performing preventive maintenan
 
 [📄 View Full Report](ORL_Assignment_1.pdf)
 
+### Preview
+![](Preview.jpg)
+
 ---
 
 ## Visual Results
