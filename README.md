@@ -32,7 +32,7 @@ The optimal policy significantly reduces cost by performing preventive maintenan
 
 ## Report
 
-[📄 View Full Report](report/ORL_Assignment_1.pdf)
+[📄 View Full Report](ORL_Assignment_1.pdf)
 
 ---
 
@@ -40,11 +40,11 @@ The optimal policy significantly reduces cost by performing preventive maintenan
 
 ### Monte Carlo Convergence
 
-![Monte Carlo](results/monte_carlo_convergence.png)
+![Monte Carlo](monte_carlo_convergence.png)
 
 ### Value Iteration Convergence
 
-![Value Iteration](results/value_iteration_convergence.png)
+![Value Iteration](value_iteration_convergence.png)
 
 ---
 
